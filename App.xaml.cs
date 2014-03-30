@@ -68,9 +68,7 @@ namespace Circular
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            XmlReader reader = XmlReader.Create("Horarios.xml");
-            XmlSerializer serial = new XmlSerializer(typeof(Horarios));
-            TodosHorarios = serial.Deserialize(reader) as Horarios;
+            TodosHorarios = new Horarios();
         }
 
         // Code to execute when the application is activated (brought to foreground)

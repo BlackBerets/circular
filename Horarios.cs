@@ -6,36 +6,137 @@ using System.Xml.Serialization;
 
 namespace Circular
 {
-    [XmlRoot(ElementName = "direto", Namespace = "")]
-    public class Direto
-    {
-        [XmlElement(ElementName = "String", Namespace = "")]
-        public List<String> hora;
-    }
-
-    [XmlRoot(ElementName = "inverso", Namespace = "")]
-    public class Inverso
-    {
-        [XmlElement(ElementName = "String", Namespace = "")]
-        public List<String> hora;
-    }
-
-    [XmlRoot(ElementName = "dia", Namespace = "")]
-    public class Dia
-    {
-        [XmlElement(ElementName = "nome", Namespace = "")]
-        public String nome;
-        [XmlElement(ElementName = "direto", Namespace = "")]
-        public Direto direto;
-        [XmlElement(ElementName = "inverso", Namespace = "")]
-        public Inverso inverso;
-    }
-
-    [XmlRoot(ElementName = "horarios", Namespace = "")]
     public class Horarios
     {
-        [XmlElement(ElementName = "dia", Namespace = "")]
-        public List<Dia> dia;
+        public string[] Diretos { get; set; }
+
+        public Horarios()
+        {
+            Diretos = new string[] {
+                "06:10", 
+                "06:20",            
+                "06:30",            
+                "06:35",            
+                "06:43",
+                "06:47",
+                "06:52",
+                "07:02",
+                "07:07",
+                "07:17",
+                "07:22",
+                "07:27",
+                "07:37",
+                "07:42",
+                "07:52",
+                "07:57",
+                "08:02",
+                "08:12",
+                "08:19",
+                "08:31",
+                "08:38",
+                "08:44",
+                "08:51",
+                "09:07",
+                "09:15",
+                "09:23",
+                "09:36",
+                "09:56",
+                "10:10",
+                "10:16",
+                "10:23",
+                "10:30",
+                "10:46",
+                "10:55",
+                "11:10",
+                "11:18",
+                "11:26",
+                "11:42",
+                "11:47",
+                "11:52",
+                "11:57",
+                "12:02",
+                "12:14",
+                "12:19",
+                "12:27",
+                "12:31",
+                "12:35",
+                "12:45",
+                "12:50",
+                "13:00",
+                "13:05",
+                "13:09",
+                "13:17",
+                "13:22",
+                "13:32",
+                "13:37",
+                "13:42",
+                "13:50",
+                "13:54",
+                "14:07",
+                "14:14",
+                "14:20",
+                "14:30",
+                "14:35",
+                "14:45",
+                "14:50",
+                "14:54",
+                "15:02",
+                "15:07",
+                "15:17",
+                "15:22",
+                "15:27",
+                "15:35",
+                "15:41",
+                "15:54",
+                "16:00",
+                "16:10",
+                "16:15",
+                "16:26",
+                "16:32",
+                "16:43",
+                "16:47",
+                "16:58",
+                "17:03",
+                "17:15",
+                "17:20",
+                "17:30",
+                "17:35",
+                "17:47",
+                "17:52",
+                "18:02",
+                "18:08",
+                "18:14",
+                "18:20",
+                "18:25",
+                "18:39",
+                "18:47",
+                "18:55",
+                "19:07",
+                "19:11",
+                "19:26",
+                "19:34",
+                "19:42",
+                "20:00",
+                "20:07",
+                "20:19",
+                "20:33",
+                "20:40",
+                "20:45",
+                "20:55",
+                "21:06",
+                "21:10",
+                "21:15",
+                "21:20",
+                "21:30",
+                "21:40",
+                "21:45",
+                "21:50",
+                "22:00",
+                "22:10",
+                "22:20",
+                "22:40"
+            };
+        }
 
 
     }

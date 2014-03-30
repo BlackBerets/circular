@@ -29,11 +29,11 @@
             </controls:PanoramaItem>
  
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="direto">
+            <controls:PanoramaItem x:Name="AbaDireto" Header="direto">
                 
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="inverso">
+            <controls:PanoramaItem x:Name="AbaInverso" Header="inverso">
 
             </controls:PanoramaItem>
         </controls:Panorama>
