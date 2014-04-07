@@ -21,8 +21,10 @@ namespace Circular
     {
 
         public static Horarios TodosHorarios;
+        public static List<Carro> Diretos;
+        public static List<Carro> Inversos;
 
-       /// <summary>
+        /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
@@ -46,7 +48,7 @@ namespace Circular
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Display the current frame rate counters.
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -59,7 +61,7 @@ namespace Circular
                 // application's PhoneApplicationService object to Disabled.
                 // Caution:- Use this under debug mode only. Application that disables user idle detection will continue to run
                 // and consume battery power when the user is not using the phone.
-                PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
+                //PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
         }
@@ -68,7 +70,15 @@ namespace Circular
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            TodosHorarios = new Horarios();
+            Carros TodosCarros;
+            using (XmlReader xreader = XmlReader.Create("Carros.xml"))
+            {
+                XmlSerializer serial = new XmlSerializer(typeof(Carros));
+                TodosCarros = serial.Deserialize(xreader) as Carros;
+            }
+
+            Diretos = TodosCarros.Carro.Where(x => x.Circuito == "Direto").ToList();
+            Inversos = TodosCarros.Carro.Where(x => x.Circuito == "Inverso").ToList();
         }
 
         // Code to execute when the application is activated (brought to foreground)

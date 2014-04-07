@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
+  <Languages xmlns="">
+    <Language code="pt-BR" />
+  </Languages>
   <App xmlns="" ProductID="{24ca2b7e-ce4c-4f5b-b7c3-d3d274f9da4a}" Title="Circular" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Circular author" Description="Sample description" Publisher="Circular" PublisherID="{4889b710-7ee2-4534-bf84-8918505ca30b}">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
