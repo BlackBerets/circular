@@ -12,11 +12,15 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
-	<phone:PhoneApplicationPage.Resources>
-		<Style x:Key="PainelProximos" TargetType="StackPanel">
-			<Setter Property="Height" Value="150"/>
-		</Style>
-	</phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="PainelProximos" TargetType="StackPanel">
+            <Setter Property="Height" Value="150"/>
+        </Style>
+        <Style x:Key="ListaHorario" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Default" IsVisible="True" Opacity="0.8">
             <shell:ApplicationBarIconButton x:Name="btnAjustes" IconUri="/Assets/AppBar/feature.settings.png" Text="ajustes" Click="btnAjustes_Click"/>
@@ -25,34 +29,37 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
- 
+
         <!--Panorama control-->
         <controls:Panorama Title="{StaticResource AppName}" Background="#FF195F99" Foreground="#DEFFFFFF">
- 
+
             <!--Panorama item one-->
             <controls:PanoramaItem Header="próximas">
-            	<StackPanel HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
-            		<StackPanel Style="{StaticResource PainelProximos}">
-            			<TextBlock TextWrapping="Wrap" Text="Direto:" Style="{StaticResource PhoneTextLargeStyle}"/>
-            			<TextBlock x:Name="tbHorarioProxDireto" TextWrapping="Wrap" Text="00:00" HorizontalAlignment="Center" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
-            			<TextBlock x:Name="tbFaltamDireto" TextWrapping="Wrap" Text="Faltam: {0} min" Margin="12,0,0,0"/>
-            		</StackPanel>
-            		<StackPanel Style="{StaticResource PainelProximos}">
-            			<TextBlock TextWrapping="Wrap" Text="Inverso:" Style="{StaticResource PhoneTextLargeStyle}"/>
-            			<TextBlock x:Name="tbHorarioProxInverso" TextWrapping="Wrap" Text="00:00" Margin="0" FontSize="{StaticResource PhoneFontSizeMediumLarge}" HorizontalAlignment="Center"/>
-            			<TextBlock x:Name="tbFaltamInverso" TextWrapping="Wrap" Text="Faltam: {0} min" Margin="12,0,0,0"/>
-            		</StackPanel>
-            	</StackPanel>
+                <StackPanel HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
+                    <StackPanel Style="{StaticResource PainelProximos}">
+                        <TextBlock TextWrapping="Wrap" Text="Direto:" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock x:Name="tbHorarioProxDireto" TextWrapping="Wrap" Text="00:00" HorizontalAlignment="Center" FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
+                        <TextBlock x:Name="tbFaltamDireto" TextWrapping="Wrap" Text="Faltam: {0} min" Margin="12,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource PainelProximos}">
+                        <TextBlock TextWrapping="Wrap" Text="Inverso:" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock x:Name="tbHorarioProxInverso" TextWrapping="Wrap" Text="00:00" Margin="0" FontSize="{StaticResource PhoneFontSizeExtraLarge}" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="tbFaltamInverso" TextWrapping="Wrap" Text="Faltam: {0} min" Margin="12,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
             </controls:PanoramaItem>
- 
+
             <!--Panorama item two-->
             <controls:PanoramaItem x:Name="AbaDireto" Header="direto">
-            	<StackPanel x:Name="spDiretos" Width="420"/>
+                <ScrollViewer Margin="0,0,0,80">
+                    <StackPanel x:Name="spDiretos" Width="420"/>
+                </ScrollViewer>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem x:Name="AbaInverso" Header="inverso">
-            	<StackPanel x:Name="spInverso" HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420"/>
-
+                <ScrollViewer Margin="0,0,0,80">
+                    <StackPanel x:Name="spInversos" Width="420"/>
+                </ScrollViewer>
             </controls:PanoramaItem>
         </controls:Panorama>
     </Grid>

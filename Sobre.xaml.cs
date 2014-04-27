@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
+using Microsoft.Phone.Tasks;
 
 namespace Circular
 {
@@ -71,6 +72,24 @@ namespace Circular
                     break;
             }
             settings.Save();
+        }
+
+        private void emailButton_Click(object sender, RoutedEventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.Subject = "App Circular UFRN";
+            emailComposeTask.To = "thiagojedi@live.it";
+
+            emailComposeTask.Show();
+
+        }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            WebBrowserTask browserTask = new WebBrowserTask();
+            browserTask.Uri = new Uri("http://github.com/blackberets/circular");
+            browserTask.Show();
         }
     }
 }

@@ -21,12 +21,48 @@ namespace Circular
         IsolatedStorageSettings configs;
         Timer timer;
 
+        List<string> saidasDiretas;
+        List<string> saidasInversas;
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
 
             configs = IsolatedStorageSettings.ApplicationSettings;
+
+            saidasDiretas = new List<string>();
+            foreach (Carro carro in App.Diretos)
+                saidasDiretas.AddRange(carro.Saidas.Saida);
+            saidasDiretas.Sort();
+
+            saidasInversas = new List<string>();
+            foreach (Carro carro in App.Inversos)
+                saidasInversas.AddRange(carro.Saidas.Saida);
+            saidasInversas.Sort();
+
+            LoadAll();
+        }
+
+        private void LoadAll()
+        {
+            LoadSaidas(saidasDiretas, spDiretos);
+
+            LoadSaidas(saidasInversas, spInversos);
+        }
+
+        private void LoadSaidas(IEnumerable<string> lista, StackPanel panel)
+        {
+            foreach (var item in lista)
+            {
+                TextBlock tbHorario = new TextBlock();
+                tbHorario.Style = Resources["ListaHorario"] as Style;
+
+                tbHorario.Text = item;
+                tbHorario.Hold += tbHorario_Hold;
+
+                panel.Children.Add(tbHorario);
+            }
         }
 
         private void ontimer(object state)
@@ -48,22 +84,11 @@ namespace Circular
         // Load data for the ViewModel Items
         private void LoadProximos()
         {
-            List<string> saidasDiretas = new List<string>();
-            foreach (Carro carro in App.Diretos)
-                saidasDiretas.AddRange(carro.Saidas.Saida);
-            saidasDiretas.Sort();
-
+            
             HorarioProximo(saidasDiretas, tbHorarioProxDireto);
-
             QuantoFalta(tbHorarioProxDireto, tbFaltamDireto);
 
-            List<string> saidasInversas = new List<string>();
-            foreach (Carro carro in App.Inversos)
-                saidasInversas.AddRange(carro.Saidas.Saida);
-            saidasInversas.Sort();
-
             HorarioProximo(saidasInversas, tbHorarioProxInverso);
-
             QuantoFalta(tbHorarioProxInverso, tbFaltamInverso);
         }
 
@@ -71,7 +96,7 @@ namespace Circular
         {
             TimeSpan ts = DateTime.Parse(tbHorario.Text).TimeOfDay.Subtract(DateTime.Now.TimeOfDay);
             if (ts.TotalMinutes <= 60)
-                tbFaltam.Text = String.Format("Faltam {0:D} minutos", ts.TotalMinutes.ToString());
+                tbFaltam.Text = String.Format("Faltam {0} minutos", ts.TotalMinutes.ToString("F0", System.Globalization.CultureInfo.InvariantCulture));
             else
                 tbFaltam.Text = "Vai demorar um pouco.";
         }
@@ -111,7 +136,11 @@ namespace Circular
             ContextMenu ctHorario = ContextMenuService.GetContextMenu(horario.Parent);
 
             if (ctHorario == null)
+            {
                 ctHorario = new ContextMenu();
+                ctHorario.IsZoomEnabled = false;
+                ctHorario.IsFadeEnabled = false;
+            }
             else
                 ctHorario.Items.Clear();
 

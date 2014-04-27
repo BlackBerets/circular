@@ -14,29 +14,48 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="SobreStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="12,12,12,12"></Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="CIRCULAR UFRN">
+        <phone:Pivot Title="CIRCULAR UFRN BETA">
             <!--Pivot item one-->
             <phone:PivotItem Header="ajustes">
                 <Grid>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Tempo de alarme:" VerticalAlignment="Top" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Tempo de alarme:" VerticalAlignment="Top" FontSize="{StaticResource PhoneFontSizeLarge}" RenderTransformOrigin="0.719,7.523"/>
                     <toolkit:ListPicker x:Name="lpDelay" Margin="0,10,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" >
                         <toolkit:ListPickerItem x:Name="opt15min" Content="15 min"/>
                         <toolkit:ListPickerItem x:Name="opt10min" Content="10 min"/>
                         <toolkit:ListPickerItem x:Name="opt5min" Content="5 min"/>
                     </toolkit:ListPicker>
                     <TextBlock HorizontalAlignment="Left" Margin="10,48,0,0" TextWrapping="Wrap" Text="Escolha com quantos minutos antes da saída do circular você quer ser avisado." VerticalAlignment="Top" Width="305"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,207,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="436" Height="332" FontSize="{StaticResource PhoneFontSizeMedium}">
+                    	<Run Text="Para criar um alarme você deve pressionar e segurar um horário na lista de saídas (inverso ou diretos)."/>
+
+                    </TextBlock>
                 </Grid>
-            </phone:PivotItem>
-            <phone:PivotItem Header="ajuda">
-                <Grid/>
             </phone:PivotItem>
             <!--Pivot item one-->
             <phone:PivotItem Header="sobre">
-                <Grid/>
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Style="{StaticResource SobreStyle}">
+                		<Run Text="As informações foram retiradas do quadro de horários existente no terminal do Circular."/>
+                		<LineBreak/>
+                		<LineBreak/>
+                		<Run Text="Os horários podem sofrer alteração sem aviso prévio."/>
+                    </TextBlock>
+                    <TextBlock TextWrapping="Wrap" Text="Desenvolvido por Thiago Jedi" Style="{StaticResource SobreStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Text="Desenvolvido sob licença GPLv3" Style="{StaticResource SobreStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Text="Contato:" Style="{StaticResource SobreStyle}"/>
+                    <HyperlinkButton x:Name="emailButton" Content="thiagojedi@live.it" Click="emailButton_Click"/>
+                    <TextBlock TextWrapping="Wrap" Text="Código Fonte disponível em:" Style="{StaticResource SobreStyle}"/>
+                    <HyperlinkButton Content="github.com/BlackBerets/Circular" Click="HyperlinkButton_Click"/>
+                </StackPanel>
             </phone:PivotItem>
 
             <!--Pivot item two-->
